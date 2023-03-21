@@ -2,7 +2,6 @@ pipeline {
     agent { label 'remote-label'}
 
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3.6.2"
     }
 
@@ -10,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/hannah0623/javaproject.git'
+                git branch:'master', url:'https://github.com/hannah0623/javaproject.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
